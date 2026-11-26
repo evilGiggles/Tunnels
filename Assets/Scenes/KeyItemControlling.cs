@@ -9,7 +9,7 @@ namespace KeySystem
         [SerializeField] private bool Door = false;
         [SerializeField] private bool Rustykey = false;
 
-        [SerializeField] private keyinventory keyinventory = null;
+        [SerializeField] private keyinventory _keyinventory = null;
 
         private keydoorcontroller doorObject;
 
@@ -31,7 +31,7 @@ namespace KeySystem
 
             else if (Rustykey)
             {
-                _keyInventory.hasRustyKey = true;
+                _keyinventory.hasRustyKey = true;
                 gameObject.SetActive(false);
             }
         }
