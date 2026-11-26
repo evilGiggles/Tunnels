@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class PlayerController : MonoBehaviour
     private int jumpsRemaining = 2;
 
     private CharacterController controller;
+    private PlayerController playerController;
+    private CharacterController CharacterControllercharacterController;
     private Vector3 velocity;
 
     void Start()
