@@ -1,18 +1,15 @@
 using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 70f;
     public float sprintSpeed = 8f;
-    public float jumpHeight = 2f;
+    public float jumpHeight = 5f;
     public float gravity = -20f;
     private int jumpsRemaining = 2;
 
+
     private CharacterController controller;
-    private PlayerController playerController;
-    private CharacterController CharacterControllercharacterController;
     private Vector3 velocity;
 
     void Start()
@@ -25,8 +22,8 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         ApplyGravity();
         HandleJump();
-        HandleCrouch();
 
+        HandleCrouch();
 
 
     }
@@ -36,18 +33,22 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 direction = new Vector3(horizontal, 0, vertical);
+        Vector3 direction =
+            transform.right * horizontal +
+            transform.forward * vertical;
 
-        controller.Move(direction *  moveSpeed * Time.deltaTime);
+        controller.Move(direction * moveSpeed * Time.deltaTime);
+
         float currentSpeed = moveSpeed;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            currentSpeed = 16f;
+            currentSpeed = 90f;
         }
 
         controller.Move(direction * currentSpeed * Time.deltaTime);
     }
+
     public float standingHeight = 2f;
     public float crouchingHeight = 1f;
 
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
         {
             controller.height = standingHeight;
         }
+
     }
     void HandleJump()
     {
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpsRemaining = 2;
         }
+
     }
     void ApplyGravity()
     {
